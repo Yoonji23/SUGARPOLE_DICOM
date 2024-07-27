@@ -1,7 +1,10 @@
-import { Button } from "./common/Button";
-import { Category } from "./common/Category";
+import { useMoveImage } from "../../hooks/useMoveImage";
+import { Button } from "./Button";
+import { Category } from "./Category";
 
 export const Header = () => {
+  const { moveToNextImage, moveToPreviousImage } = useMoveImage();
+
   return (
     <header className="header flex-center">
       <h1 className="font-viewer pr-[24px]">
@@ -19,8 +22,8 @@ export const Header = () => {
         </ul>
       </nav>
 
-      <Button>Previous Image</Button>
-      <Button>Next Image</Button>
+      <Button onClick={moveToPreviousImage}>Previous Image</Button>
+      <Button onClick={moveToNextImage}>Next Image</Button>
     </header>
   );
 };
