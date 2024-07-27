@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.15",
+    "@types/cornerstone-core": "^2.3.3",
+    "cornerstone-core": "^2.6.1",
+    "cornerstone-wado-image-loader": "^4.13.2",
+    "dicom-parser": "^1.8.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
