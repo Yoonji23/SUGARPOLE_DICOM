@@ -14,6 +14,9 @@ export const applyViewportOperation = (props: ApplyViewportOperationProps) => {
 
   if (viewport) {
     switch (feature) {
+      case "Zoom":
+        window.alert("죄송합니다. 아직 사용 불가 서비스입니다.");
+        break;
       case "FlipH":
         viewport.hflip = !viewport.hflip;
         cornerstone.setViewport(element, viewport);
