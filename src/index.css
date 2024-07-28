@@ -12,7 +12,7 @@
   @apply border border-red-700;
 }
 .header {
-  @apply flex flex-row pt-[34px] pr-[40px] pb-[34px] pl-[34px] gap-[24px] border-b-[5px] border-[#0F62FE] whitespace-nowrap;
+  @apply flex flex-row pt-[34px] pr-[40px] pb-[34px] pl-[34px] gap-[24px] border-b-[5px] border-[#0F62FE] whitespace-nowrap bg-white;
 }
 .font-viewer {
   @apply font-bold text-[20px] leading-[22px] text-[#697077];
