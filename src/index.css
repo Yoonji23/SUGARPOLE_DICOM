@@ -12,7 +12,7 @@
   @apply border border-red-700;
 }
 .header {
-  @apply flex flex-row pt-[34px] pr-[40px] pb-[34px] pl-[34px] gap-[24px] border-b-[5px] border-[#0F62FE];
+  @apply flex flex-row pt-[34px] pr-[40px] pb-[34px] pl-[34px] gap-[24px] border-b-[5px] border-[#0F62FE] whitespace-nowrap;
 }
 .font-viewer {
   @apply font-bold text-[20px] leading-[22px] text-[#697077];
@@ -23,9 +23,13 @@
 .blue-button {
   @apply bg-[#0F62FE] text-white font-medium text-[16px] leading-[16px] pt-[16px] pr-[12px] pb-[16px] pl-[12px];
 }
+.click-active:active {
+  @apply transform scale-95; /* 클릭 시 살짝 축소 */
+  @apply animate-blink; /* 깜박이는 애니메이션 */
+}
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -57,14 +61,31 @@ body {
 button {
   cursor: pointer;
 }
-button:hover {
-  border-color: #646cff;
+
+/* button:active {
+  transform: scale(0.95);
+  animation: blink 0.2s;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+li:active {
+  transform: scale(0.95);
+  animation: blink 0.2s;
+} */
+/* 깜박이는 애니메이션 정의 */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
+@layer utilities {
+  .animate-blink {
+    animation: blink 0.2s;
+  }
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -6,7 +6,7 @@ interface ButtonProps {
 }
 export const Button = ({ children, onClick }: ButtonProps) => {
   return (
-    <button className="blue-button" onClick={onClick}>
+    <button className="blue-button click-active" onClick={onClick}>
       {children}
     </button>
   );
