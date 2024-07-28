@@ -11,26 +11,20 @@ const updatePage = async (newPage: number) => {
   return newPage;
 };
 
-export const usePageState = () => {
-  const queryClient = useQueryClient();
-
-  const { data: currentPage = 0 } = useQuery({
+export const useGetCurrentPage = () => {
+  return useQuery({
     queryKey: ["currentPage"],
     queryFn: getCurrentPage,
+    initialData: 0,
   });
+};
 
-  /**DICOM VIEW 페이지 업데이트 */
-  const updateDicomView = useMutation({
+export const useUpdateCurrentPage = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
     mutationFn: updatePage,
-    onSuccess: (newPage) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["currentPage"] });
     },
   });
-
-  /** 페이지 상태를 업데이트하는 함수 */
-  const setCurrentPage = (newPage: number) => {
-    updateDicomView.mutate(newPage);
-  };
-
-  return { currentPage, setCurrentPage };
 };
