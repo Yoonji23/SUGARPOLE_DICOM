@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+# 프론트엔드 최윤지\_DICOM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- 사용 기술 및 버전
+  - React 18.3.3
+  - Typescript 5.2.2
+  - React-query : 5.51
+  - TailwindCSS 3.4.6
+  - Vite 5.3.4
+  - cornerstone-core: 2.6.1,
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔥 구현 항목
 
-## Expanding the ESLint configuration
+1. 레거시 버전인 cornerstone-core(버전 2.6)을 사용하여 DICOM 이미지 업로드 구현하였습니다.
+2. React-query로 이미지 페이지네이션 상태 관리 적용
+3. 하나의 이미지 클릭 후, 해당 이미지에만 기능이 적용되도록 구현하였습니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<br>
+<br>
 
-- Configure the top-level `parserOptions` property like this:
+## 👀 데모영상
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   <img width="80%" src="https://github.com/user-attachments/assets/3a1a9739-91cf-4092-ae0b-6303ccf92884"/>
