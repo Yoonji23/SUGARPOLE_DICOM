@@ -21,4 +21,9 @@
 
 ## 👀 데모영상
 
-   <img width="80%" src="https://github.com/user-attachments/assets/faa5cef2-9abd-422e-8b45-28e3b2270f62"/>
+<video width="100%" height="360" controls>
+  <source src="https://github.com/user-attachments/assets/c7e7f783-60ac-4b70-ae87-3abd830353f2" type="video/mp4">
+</video>
+
+<img width="100%" src="https://github.com/user-attachments/assets/c7e7f783-60ac-4b70-ae87-3abd830353f2
+   "/>
