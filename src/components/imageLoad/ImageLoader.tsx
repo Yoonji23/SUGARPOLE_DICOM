@@ -1,47 +1,58 @@
 import * as cornerstone from "cornerstone-core";
 import * as cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
 import dicomParser from "dicom-parser";
-import { useEffect } from "react";
-import dicomImg from "../../utils/constants/dicomFile";
-import { usePageState } from "../../hooks/usePageState";
+import { Dispatch, useEffect, useRef } from "react";
 
-export const ImageLoader = () => {
-  const { currentPage } = usePageState();
-  const imagesPerPage: number = 2;
-  const imageIds = dicomImg.slice(
-    currentPage * imagesPerPage,
-    (currentPage + 1) * imagesPerPage
-  );
-  console.log("imageIds", imageIds);
+import { applyViewportOperation } from "../../utils/helpers/applyViewportOperation";
+import { useGetCurrentPage } from "../../hooks/usePageState";
+
+interface ImageLoaderProps {
+  feature: string | null;
+  setFeature: Dispatch<React.SetStateAction<string | null>>;
+  isSelected: boolean;
+  imageFileName: string;
+}
+
+export const ImageLoader = (props: ImageLoaderProps) => {
+  const { feature, setFeature, isSelected, imageFileName } = props;
+  const { data: currentPage } = useGetCurrentPage();
+  const elementRef = useRef<HTMLDivElement>(null);
+  const imageId = `wadouri:${window.location.origin}/dicom/${imageFileName}`;
 
   useEffect(() => {
-    const loadImages = async () => {
-      const content = document.getElementById("content");
-      if (!content) return;
-      content.innerHTML = ""; // 이전 이미지 값 초기화
-      cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
-      cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+    if (isSelected) {
+      setFeature(null);
+      const element = elementRef.current;
+      if (element && feature) {
+        applyViewportOperation({
+          feature: feature,
+          setFeature,
+          element: element,
+        });
+      }
+    }
+  }, [isSelected, feature]);
 
-      imageIds.forEach(async (imageFileName) => {
-        const imageId = `wadouri:${window.location.origin}/dicom/${imageFileName}`;
-        const element = document.createElement("div");
-        element.style.width = "50vw";
-        element.style.height = "88vh";
-        content.appendChild(element);
+  useEffect(() => {
+    if (!elementRef.current) return;
+    const element = elementRef.current;
 
-        cornerstone.enable(element);
+    cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+    cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
-        try {
-          const image = await cornerstone.loadImage(imageId);
-          cornerstone.displayImage(element, image);
-        } catch (error) {
-          console.error("Failed to load image:", error);
-        }
-      });
-    };
+    cornerstone.enable(element);
 
-    loadImages();
+    cornerstone.loadImage(imageId).then((image) => {
+      cornerstone.displayImage(element, image);
+
+      localStorage.clear();
+    });
   }, [currentPage]);
 
-  return <div id="content" className="flex-center gap-[7px]"></div>;
+  return (
+    <div
+      ref={elementRef}
+      className="flex flex-center w-[709px] h-[897px]"
+    ></div>
+  );
 };

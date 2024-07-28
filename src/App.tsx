@@ -1,15 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { DicomView } from "./pages/DicomView";
 import { Header } from "./components/common/Header";
 
 function App() {
+  const [feature, setFeature] = useState<string | null>(null);
+  const handleClickFeature = (feat: string) => {
+    setFeature(feat);
+  };
   return (
     <div>
-      <Header />
-      <DicomView />
+      <Header handleClickFeature={handleClickFeature} />
+      <DicomView feature={feature} setFeature={setFeature} />
     </div>
   );
 }
